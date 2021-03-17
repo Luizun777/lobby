@@ -11,20 +11,28 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { CompoentsModule } from './componnets/componnets.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { GruposComponent } from './pages/grupos/grupos.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 registerLocaleData(es);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GruposComponent
   ],
   imports: [
+    DragDropModule,
+    CompoentsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzButtonModule
+    NzButtonModule,
+    MatTabsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]

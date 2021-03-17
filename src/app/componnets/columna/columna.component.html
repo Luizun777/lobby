@@ -1,0 +1,13 @@
+<div class="tarjeta-grupo">
+  <div class="title-grupo">
+    <h4>{{listado.name}}</h4>
+    <boton-option [grupo]="true"></boton-option>
+  </div>
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <ng-container *ngFor="let lista of listado.listado">
+        <div class="example-box" cdkDrag>
+            <app-tarjeta [datos]="lista"></app-tarjeta>
+        </div>
+    </ng-container>
+  </div>
+</div>

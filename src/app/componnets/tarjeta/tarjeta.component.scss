@@ -1,0 +1,26 @@
+.contenido {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 0.5rem;
+  background: #242526;
+  .img {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+  }
+  .contenido-texto {
+    display: grid;
+    .title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+    .subtitle {
+      color: #b0b3b8;
+      font-size: 14px;
+    }
+  }
+}
+.contenido-btn {
+  text-align: end;
+  color: snow;
+}
