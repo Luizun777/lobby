@@ -9,6 +9,8 @@ import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 })
 export class BotonOptionComponent implements OnInit {
 
+  @Input() type: string;
+  @Input() data: any;
   @Input() grupo: boolean;
 
   constructor(public dialog: MatDialog) { }
@@ -18,8 +20,8 @@ export class BotonOptionComponent implements OnInit {
 
   edit() {
     const dialogRef = this.dialog.open(ModalEditComponent, {
-      width: '250px',
-      data: {}
+      width: this.grupo ? '400px' : '250px',
+      data: {type: this.type, info: this.data, grupo: this.grupo}
     });
 
     dialogRef.afterClosed().subscribe(result => {

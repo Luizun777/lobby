@@ -4,7 +4,7 @@
     <div class="title">{{datos.titulo}}</div>
     <div class="subtitle">Dog Breed</div>
   </div>
-  <boton-option></boton-option>
+  <boton-option [data]="datos" [type]="'Edit'" [grupo]="false"></boton-option>
 </div>
 <div class="contenido-btn">
   <button mat-button (click)="abirEnlace()">GO!</button>

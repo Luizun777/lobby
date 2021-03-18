@@ -1,1 +1,50 @@
-<p>modal-edit works!</p>
+<ng-container *ngIf="grupo; else dato">
+  <form>
+    <div class="contenido-datos">
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <div
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+        </div>
+      </div>
+      
+      <div class="example-container">
+        <h2>Todos</h2>
+        <div
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="done"
+          [cdkDropListConnectedTo]="[todoList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-container>
+<ng-template #dato>
+  <form [formGroup]="orderForm">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>URL</mat-label>
+      <input matInput formControlName="url">
+    </mat-form-field>
+  </form>
+  <div class="contenido-boton">
+      <boton [text]="data.type" [icon]="data.type === 'Edit' ? 'edit' : 'save'" (click)="editar()"></boton>
+  </div>
+</ng-template>

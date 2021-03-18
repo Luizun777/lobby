@@ -15,6 +15,8 @@ import { CompoentsModule } from './componnets/componnets.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { GruposComponent } from './pages/grupos/grupos.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 registerLocaleData(es);
 
@@ -32,7 +34,9 @@ registerLocaleData(es);
     HttpClientModule,
     BrowserAnimationsModule,
     NzButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]

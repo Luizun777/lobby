@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TarjetaComponent } from './tarjeta/tarjeta.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -12,6 +13,7 @@ import { BotonOptionComponent } from './boton-option/boton-option.component';
 import { BotonComponent } from './boton/boton.component';
 import { ModalEditComponent } from './modal-edit/modal-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -22,7 +24,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   declarations: [
     TarjetaComponent,
@@ -33,7 +38,10 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   exports: [
     TarjetaComponent,
-    ColumnaComponent
+    ColumnaComponent,
+    BotonOptionComponent,
+    BotonComponent,
+    ModalEditComponent
   ]
 })
 export class CompoentsModule { }
