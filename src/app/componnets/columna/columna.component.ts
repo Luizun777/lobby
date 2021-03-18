@@ -15,16 +15,10 @@ export class ColumnaComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.listado);
-  }
+  ngOnInit(): void { }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.listado.listado, event.previousIndex, event.currentIndex);
-    const newOrden = this.listado.listado.map((lista: any) => {
-      return lista.id;
-    });
-    console.log(newOrden);
   }
 
 }

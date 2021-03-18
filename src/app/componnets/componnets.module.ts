@@ -15,7 +15,6 @@ import { ModalEditComponent } from './modal-edit/modal-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 
-
 @NgModule({
   imports: [
     BrowserModule,

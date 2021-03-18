@@ -1,7 +1,12 @@
-<div cdkDropList cdkDropListOrientation="horizontal" class="columna-grupo" (cdkDropListDropped)="drop($event)">
-    <ng-container *ngFor="let grupo of grupos">
-        <div class="example-box" cdkDrag>
-            <app-columna [listado]="grupo"></app-columna>
-        </div>
-    </ng-container>
-</div>
+<ng-container *ngIf="cargando; else ok">
+    <mat-spinner></mat-spinner>
+</ng-container>
+<ng-template #ok>
+    <div cdkDropList cdkDropListOrientation="horizontal" class="columna-grupo" (cdkDropListDropped)="drop($event)">
+        <ng-container *ngFor="let grupo of grupos">
+            <div class="example-box" cdkDrag>
+                <app-columna [listado]="grupo"></app-columna>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

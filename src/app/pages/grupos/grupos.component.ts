@@ -12,10 +12,12 @@ export class GruposComponent implements OnInit {
 
   grupos: any;
   listadoSub: Subscription;
+  cargando: boolean;
 
   constructor(private ListadosSrv: ListadosService) { }
 
   ngOnInit(): void {
+    this.cargando = true;
     this.getGrupos();
     this.ListadosSrv.change.subscribe(() => this.getGrupos());
   }
@@ -26,7 +28,7 @@ export class GruposComponent implements OnInit {
 
   getGrupos(): void {
     this.ListadosSrv.getGrupos().subscribe((grupos: any) => {
-      console.log(grupos.result);
+      this.cargando = !grupos.GET;
       this.grupos = grupos.result;
     });
   }

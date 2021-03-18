@@ -8,15 +8,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class TarjetaComponent implements OnInit {
 
   @Input() datos: any;
+  img: string = 'https://material.angular.io/assets/img/examples/shiba1.jpg';
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.datos.URL);
+    console.log(this.datos);
+    this.img = this.datos.img ? this.datos.img : this.img;
   }
 
   abirEnlace() {
-    window.open(`//${this.datos.URL}`, '_blank');
+    window.open(`${this.datos.URL}`, '_blank');
   }
 
 }

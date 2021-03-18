@@ -1,47 +1,65 @@
 <ng-container *ngIf="grupo; else dato">
-  <form>
-    <div class="contenido-datos">
-      <div class="example-container">
-        <mat-form-field>
-          <mat-label>Nombre</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <div
-          cdkDropList
-          #todoList="cdkDropList"
-          [cdkDropListData]="todo"
-          [cdkDropListConnectedTo]="[doneList]"
-          class="example-list"
-          (cdkDropListDropped)="drop($event)">
-          <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-        </div>
-      </div>
-      
-      <div class="example-container">
-        <h2>Todos</h2>
-        <div
-          cdkDropList
-          #doneList="cdkDropList"
-          [cdkDropListData]="done"
-          [cdkDropListConnectedTo]="[todoList]"
-          class="example-list"
-          (cdkDropListDropped)="drop($event)">
-          <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-        </div>
+  <div class="contenido-datos">
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput [value]="info.name" (keyup)="changeName($event)">
+      </mat-form-field>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doneList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.titulo}}</div>
       </div>
     </div>
-  </form>
+    
+    <div class="example-container">
+      <!-- <h2>Todos</h2> -->
+      <div class="contenido-boton">
+        <button mat-mini-fab color="primary" (click)="agregarEnlace()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.titulo}}</div>
+      </div>
+    </div>
+  </div>
 </ng-container>
 <ng-template #dato>
   <form [formGroup]="orderForm">
     <mat-form-field>
       <mat-label>Nombre</mat-label>
-      <input matInput formControlName="nombre">
+      <input matInput type="text" formControlName="nombre">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Abreviación</mat-label>
+      <input matInput type="text" formControlName="subNombre">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Kanji</mat-label>
+      <input matInput type="text" formControlName="kanji">
     </mat-form-field>
   
     <mat-form-field>
       <mat-label>URL</mat-label>
-      <input matInput formControlName="url">
+      <input matInput type="text" formControlName="url">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Imagen URL</mat-label>
+      <input matInput type="text" formControlName="img">
     </mat-form-field>
   </form>
   <div class="contenido-boton">

@@ -19,13 +19,9 @@ export class BotonOptionComponent implements OnInit {
   }
 
   edit() {
-    const dialogRef = this.dialog.open(ModalEditComponent, {
+    this.dialog.open(ModalEditComponent, {
       width: this.grupo ? '400px' : '250px',
       data: {type: this.type, info: this.data, grupo: this.grupo}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 

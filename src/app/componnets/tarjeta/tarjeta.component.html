@@ -1,8 +1,8 @@
 <div class="contenido">
-  <img class="img" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="img">
+  <img class="img" [src]="img" alt="img">
   <div class="contenido-texto">
     <div class="title">{{datos.titulo}}</div>
-    <div class="subtitle">Dog Breed</div>
+    <div class="subtitle">{{datos.kanji}} /{{datos.subtitulo}}/</div>
   </div>
   <boton-option [data]="datos" [type]="'Edit'" [grupo]="false"></boton-option>
 </div>

@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ListadosService } from 'src/app/services/listados.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modal-edit',
@@ -15,22 +16,11 @@ export class ModalEditComponent implements OnInit {
   info: any;
   orderForm: FormGroup;
 
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
-
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  todo: any = [];
+  done: any = [];
 
   constructor(
+    public dialog: MatDialog,
     private listadosSrv: ListadosService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ModalEditComponent>,
@@ -38,43 +28,100 @@ export class ModalEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.formInit();
     this.grupo = this.data.grupo;
     this.info = this.data.info;
-    if (!this.data.grupo && this.data.type === 'Edit') {
+    console.log(this.info);
+    if (!this.grupo && this.data.type === 'Edit') {
       this.orderForm.setValue({
         nombre: this.info.titulo,
-        url: this.info.URL
+        url: this.info.URL,
+        subNombre: this.info.subtitulo,
+        kanji: this.info.kanji,
+        img: this.info.img
       });
+    }
+
+    if (this.grupo && this.data.type === 'Edit') {
+      this.getListado();
+      this.todo = this.info.listado;
     }
   }
 
   formInit() {
     this.orderForm = this.formBuilder.group({
       nombre: new FormControl('',[Validators.required]),
-      url: new FormControl('',[Validators.required])
+      url: new FormControl('',[Validators.required]),
+      subNombre: new FormControl('',[Validators.required]),
+      kanji: new FormControl('',[Validators.required]),
+      img: new FormControl('')
     });
   }
 
+  changeName(event: any): any {
+    this.info.name = event.target.value;
+    this.edirGrupo();
+  }
+
   editar() {
-    console.log(this.orderForm.value);
     const payload = {
-      "img": "",
-      "titulo": this.orderForm.value.nombre,
-      "URL": this.orderForm.value.url
+      img: this.orderForm.value.img,
+      titulo: this.orderForm.value.nombre,
+      URL: this.orderForm.value.url,
+      subtitulo: this.orderForm.value.subNombre,
+      kanji: this.orderForm.value.kanji
     };
     if (this.data.type === 'Edit') {
       this.listadosSrv.putDato(this.info.id, payload).subscribe((data: any) => {
-        console.log(data);
         this.dialogRef.close();
+        if (!data.PUT) {
+          this.listadosSrv.alertaError(false);
+          return
+        } else {
+          this.listadosSrv.alertaOk();
+        }
         this.listadosSrv.change.emit();
       });
     } else {
-      this.listadosSrv.agregarDato(payload).subscribe(() => {
+      this.listadosSrv.agregarDato(payload).subscribe((data: any) => {
         this.dialogRef.close();
+        if (!data.POST) {
+          this.listadosSrv.alertaError(false);
+        } else {
+          this.listadosSrv.alertaOk();
+        }
       });
     }
+  }
+
+  edirGrupo(): void {
+    const listadoId = this.info.listado.reduce((accumulator: number[], currentValue: any) => [...accumulator, currentValue.id], []);
+    const payload = {
+      name: this.info.name,
+      listadoId
+    };
+    this.listadosSrv.putGrupo(this.info.id, payload).subscribe((data) => {
+      console.log(data);
+      if (!data.PUT) {
+        this.dialogRef.close();
+        this.listadosSrv.alertaError(true);
+      } else {
+        this.listadosSrv.alertaOk();
+      }
+    });
+  }
+
+  getListado(): void {
+    this.listadosSrv.getListaTotal().subscribe((data: any) => {
+      let todos = data.result.map((result: any) => {
+        const existe = this.info.listado.find((exist: any) => exist.id === result.id);
+        if (!existe) {
+          return result;
+        }
+      });
+      todos = todos.filter((dato: any) => dato !== undefined);
+      this.done = todos;
+    });
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -86,6 +133,16 @@ export class ModalEditComponent implements OnInit {
                         event.previousIndex,
                         event.currentIndex);
     }
+    this.edirGrupo();
+  }
+
+  agregarEnlace(): void {
+    const dialogRef = this.dialog.open(ModalEditComponent, {
+      width: '250px',
+      data: {type: 'Crear', info: {}, grupo: false}
+    });
+
+    dialogRef.afterClosed().subscribe(() => this.getListado());
   }
 
 }
