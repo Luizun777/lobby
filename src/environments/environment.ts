@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  // urlApi: 'http://localhost:5000/api/lobby/'
   urlApi: 'https://still-eyrie-33337.herokuapp.com/api/lobby/'
 };
 

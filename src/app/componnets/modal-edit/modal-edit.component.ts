@@ -113,14 +113,8 @@ export class ModalEditComponent implements OnInit {
 
   getListado(): void {
     this.listadosSrv.getListaTotal().subscribe((data: any) => {
-      let todos = data.result.map((result: any) => {
-        const existe = this.info.listado.find((exist: any) => exist.id === result.id);
-        if (!existe) {
-          return result;
-        }
-      });
-      todos = todos.filter((dato: any) => dato !== undefined);
-      this.done = todos;
+      console.log(data);
+      this.done = data.result;
     });
   }
 
@@ -142,7 +136,11 @@ export class ModalEditComponent implements OnInit {
       data: {type: 'Crear', info: {}, grupo: false}
     });
 
-    dialogRef.afterClosed().subscribe(() => this.getListado());
+    dialogRef.afterClosed().subscribe(() => {
+      setTimeout(() => {
+        this.getListado();
+      }, 1000);
+    });
   }
 
 }
