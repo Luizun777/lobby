@@ -34,17 +34,17 @@ export class ModalEditComponent implements OnInit {
     console.log(this.info);
     if (!this.grupo && this.data.type === 'Edit') {
       this.orderForm.setValue({
-        nombre: this.info.titulo,
-        url: this.info.URL,
-        subNombre: this.info.subtitulo,
+        nombre: this.info.title,
+        url: this.info.url,
+        subNombre: this.info.subtitle,
         kanji: this.info.kanji,
-        img: this.info.img
+        img: this.info.imgUrl
       });
     }
 
     if (this.grupo && this.data.type === 'Edit') {
       this.getListado();
-      this.todo = this.info.listado;
+      this.todo = this.info.listadoId;
     }
   }
 
@@ -65,16 +65,16 @@ export class ModalEditComponent implements OnInit {
 
   editar() {
     const payload = {
-      img: this.orderForm.value.img,
-      titulo: this.orderForm.value.nombre,
-      URL: this.orderForm.value.url,
-      subtitulo: this.orderForm.value.subNombre,
+      imgUrl: this.orderForm.value.img,
+      title: this.orderForm.value.nombre,
+      url: this.orderForm.value.url,
+      subtitle: this.orderForm.value.subNombre,
       kanji: this.orderForm.value.kanji
     };
     if (this.data.type === 'Edit') {
-      this.listadosSrv.putDato(this.info.id, payload).subscribe((data: any) => {
+      this.listadosSrv.putDato(this.info._id, payload).subscribe((data: any) => {
         this.dialogRef.close();
-        if (!data.PUT) {
+        if (!data.ok) {
           this.listadosSrv.alertaError(false);
           return
         } else {
@@ -85,7 +85,7 @@ export class ModalEditComponent implements OnInit {
     } else {
       this.listadosSrv.agregarDato(payload).subscribe((data: any) => {
         this.dialogRef.close();
-        if (!data.POST) {
+        if (!data.ok) {
           this.listadosSrv.alertaError(false);
         } else {
           this.listadosSrv.alertaOk();
@@ -95,14 +95,17 @@ export class ModalEditComponent implements OnInit {
   }
 
   edirGrupo(): void {
-    const listadoId = this.info.listado.reduce((accumulator: number[], currentValue: any) => [...accumulator, currentValue.id], []);
+    console.log(this.info._id);
+    const listadoId = this.info.listadoId.reduce((accumulator: number[], currentValue: any) => [...accumulator, currentValue._id], []);
     const payload = {
       name: this.info.name,
       listadoId
     };
-    this.listadosSrv.putGrupo(this.info.id, payload).subscribe((data) => {
+    console.log(this.info._id);
+    console.log(payload);
+    this.listadosSrv.putGrupo(this.info._id, payload).subscribe((data) => {
       console.log(data);
-      if (!data.PUT) {
+      if (!data.ok) {
         this.dialogRef.close();
         this.listadosSrv.alertaError(true);
       } else {

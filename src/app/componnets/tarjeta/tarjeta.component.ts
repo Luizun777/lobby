@@ -14,11 +14,11 @@ export class TarjetaComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.datos);
-    this.img = this.datos.img ? this.datos.img : this.img;
+    this.img = this.datos.imgUrl ? this.datos.imgUrl : this.img;
   }
 
   abirEnlace() {
-    window.open(`${this.datos.URL}`, '_blank');
+    window.open(`${this.datos.url}`, '_blank');
   }
 
 }

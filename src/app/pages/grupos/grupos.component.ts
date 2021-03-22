@@ -28,7 +28,8 @@ export class GruposComponent implements OnInit {
 
   getGrupos(): void {
     this.ListadosSrv.getGrupos().subscribe((grupos: any) => {
-      this.cargando = !grupos.GET;
+      console.log(grupos);
+      this.cargando = !grupos.ok;
       this.grupos = grupos.result;
     });
   }
