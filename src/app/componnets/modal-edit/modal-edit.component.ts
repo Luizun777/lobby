@@ -95,13 +95,11 @@ export class ModalEditComponent implements OnInit {
   }
 
   edirGrupo(): void {
-    console.log(this.info._id);
     const listadoId = this.info.listadoId.reduce((accumulator: number[], currentValue: any) => [...accumulator, currentValue._id], []);
     const payload = {
       name: this.info.name,
       listadoId
     };
-    console.log(this.info._id);
     console.log(payload);
     this.listadosSrv.putGrupo(this.info._id, payload).subscribe((data) => {
       console.log(data);

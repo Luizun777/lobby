@@ -1,6 +1,7 @@
 @import '../styles';
 
 .contenido {
+  margin-top: 10%;
   width: 85%;
   display: grid;
   margin: inherit;
@@ -8,22 +9,22 @@
   justify-self: center;
   @include tableta {
     width: 100%;
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: inherit;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // -ms-transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
     justify-content: center;
   }
   @include desktop {
     width: 100%;
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: inherit;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // -ms-transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
     justify-content: center;
   }
 }

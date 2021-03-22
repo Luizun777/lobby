@@ -1,5 +1,7 @@
 <ng-container *ngIf="cargando; else ok">
-    <mat-spinner></mat-spinner>
+    <div class="contenido-load">
+        <mat-spinner></mat-spinner>
+    </div>
 </ng-container>
 <ng-template #ok>
     <div cdkDropList cdkDropListOrientation="horizontal" class="columna-grupo" (cdkDropListDropped)="drop($event)">

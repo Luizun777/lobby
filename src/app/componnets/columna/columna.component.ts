@@ -18,7 +18,7 @@ export class ColumnaComponent implements OnInit {
   ngOnInit(): void { }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.listado.listado, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.listado.listadoId, event.previousIndex, event.currentIndex);
   }
 
 }
