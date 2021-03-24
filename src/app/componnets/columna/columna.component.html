@@ -5,7 +5,7 @@
   </div>
   <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
     <ng-container *ngFor="let lista of listado.listadoId">
-        <div class="example-box" cdkDrag>
+        <div class="example-box">
             <app-tarjeta [datos]="lista"></app-tarjeta>
         </div>
     </ng-container>

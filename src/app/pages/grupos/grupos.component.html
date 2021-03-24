@@ -4,9 +4,9 @@
     </div>
 </ng-container>
 <ng-template #ok>
-    <div cdkDropList cdkDropListOrientation="horizontal" class="columna-grupo" (cdkDropListDropped)="drop($event)">
+    <div class="columna-grupo">
         <ng-container *ngFor="let grupo of grupos">
-            <div class="example-box" cdkDrag>
+            <div class="example-box">
                 <app-columna [listado]="grupo"></app-columna>
             </div>
         </ng-container>

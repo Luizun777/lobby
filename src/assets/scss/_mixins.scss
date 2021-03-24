@@ -1,7 +1,19 @@
 // Media Queries
 
-@mixin telefono {
-  @media (min-width: #{$telefono}) {
+@mixin mobile-s {
+  @media (min-width: #{$mobile-s}) {
+    @content;
+  }
+}
+
+@mixin mobile-m {
+  @media (min-width: #{$mobile-m}) {
+    @content;
+  }
+}
+
+@mixin mobile-l {
+  @media (min-width: #{$mobile-l}) {
     @content;
   }
 }
@@ -12,8 +24,26 @@
   }
 }
 
-@mixin desktop {
-  @media (min-width: #{$desktop}) {
+@mixin laptop-s {
+  @media (min-width: #{$laptop-s}) {
+    @content;
+  }
+}
+
+@mixin laptop-m {
+  @media (min-width: #{$laptop-m}) {
+    @content;
+  }
+}
+
+@mixin laptop-l {
+  @media (min-width: #{$laptop-l}) {
+    @content;
+  }
+}
+
+@mixin desktop-k4 {
+  @media (min-width: #{$desktop-k4}) {
     @content;
   }
 }

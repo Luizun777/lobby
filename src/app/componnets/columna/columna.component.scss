@@ -1,7 +1,7 @@
 @import '../../../styles';
 
 .tarjeta-grupo {
-  width: 100%;
+  // width: max-content;
   background-color: #1c1e21;
 }
 
@@ -14,12 +14,12 @@
   background: #1c1e21;
   border-radius: 4px;
   overflow: hidden;
-  @include tableta {
-    width: 255px;
-  }
-  @include desktop {
-    width: 300px;
-  }
+  // @include tableta {
+  //   width: 255px;
+  // }
+  // @include desktop {
+  //   width: 300px;
+  // }
 }
 
 app-tarjeta {
@@ -36,7 +36,7 @@ app-tarjeta {
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  cursor: move;
+  // cursor: move;
   background: #242526;
   font-size: 14px;
 }
