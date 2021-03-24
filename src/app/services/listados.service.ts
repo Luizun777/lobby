@@ -36,11 +36,12 @@ export class ListadosService {
     return this.http.post(`${environment.urlApi}lista`, data);
   }
 
-  alertaError(emit: boolean): void {
+  alertaError(emit: boolean, message?: string): void {
+    let mensaje = message ? message : '⚠️ Error: No eres Admin 🔑';
     if (emit) {
       this.change.emit();
     }
-    this._snackBar.open('⚠️ Error: No eres Admin 🔑', '❌', {
+    this._snackBar.open(mensaje, '❌', {
       duration: 5000,
     });
   }
@@ -49,5 +50,9 @@ export class ListadosService {
     this._snackBar.open('✔️ Se guardo correctamente', '', {
       duration: 2000,
     });
+  }
+
+  subirImg(file: any) {
+    return this.http.post('https://api.cloudinary.com/v1_1/dzbpfuieg/image/upload?upload_preset=me7wb9ao', file);
   }
 }

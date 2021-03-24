@@ -14,6 +14,7 @@ import { BotonComponent } from './boton/boton.component';
 import { ModalEditComponent } from './modal-edit/modal-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    ImageCropperModule
   ],
   declarations: [
     TarjetaComponent,

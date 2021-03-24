@@ -13,7 +13,6 @@ export class TarjetaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.datos);
     this.img = this.datos.imgUrl ? this.datos.imgUrl : this.img;
   }
 

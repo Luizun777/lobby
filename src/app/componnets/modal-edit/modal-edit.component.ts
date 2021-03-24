@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ListadosService } from 'src/app/services/listados.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-modal-edit',
@@ -11,6 +12,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./modal-edit.component.scss']
 })
 export class ModalEditComponent implements OnInit {
+
+  imgPreview: string = '';
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  imgFile: File;
 
   grupo: boolean;
   info: any;
@@ -31,8 +37,8 @@ export class ModalEditComponent implements OnInit {
     this.formInit();
     this.grupo = this.data.grupo;
     this.info = this.data.info;
-    console.log(this.info);
     if (!this.grupo && this.data.type === 'Edit') {
+      this.imgPreview = this.info.imgUrl;
       this.orderForm.setValue({
         nombre: this.info.title,
         url: this.info.url,
@@ -61,6 +67,22 @@ export class ModalEditComponent implements OnInit {
   changeName(event: any): any {
     this.info.name = event.target.value;
     this.edirGrupo();
+  }
+
+  veryfImage() {
+    // "4ecd282a45020536e965a548f1b409a5"
+    if (this.imgFile) {
+      const form = new FormData();
+      form.append('file', this.imgFile);
+      this.listadosSrv.subirImg(form).subscribe((data: any) => {
+        this.orderForm.controls['img'].setValue(String(data.secure_url));
+        this.editar();
+      }, () => {
+        this.editar();
+        this.listadosSrv.alertaError(false, 'Error al guardar imagen');
+      });
+    }
+    this.editar();
   }
 
   editar() {
@@ -100,9 +122,7 @@ export class ModalEditComponent implements OnInit {
       name: this.info.name,
       listadoId
     };
-    console.log(payload);
     this.listadosSrv.putGrupo(this.info._id, payload).subscribe((data) => {
-      console.log(data);
       if (!data.ok) {
         this.dialogRef.close();
         this.listadosSrv.alertaError(true);
@@ -114,7 +134,6 @@ export class ModalEditComponent implements OnInit {
 
   getListado(): void {
     this.listadosSrv.getListaTotal().subscribe((data: any) => {
-      console.log(data);
       this.done = data.result;
     });
   }
@@ -142,6 +161,60 @@ export class ModalEditComponent implements OnInit {
         this.getListado();
       }, 1000);
     });
+  }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    const block = this.croppedImage.split(";");
+    const contentType = block[0].split(":")[1];
+    const realData = block[1].split(",")[1];
+    const blob = this.b64toBlob(realData, contentType, 512);
+    const file = this.blobToFile(blob, 'img.png');
+    this.imgFile = new File([file], "img.png", {type: "image/png"});
+  }
+  imageLoaded(image: HTMLImageElement) {
+    // show cropper
+  }
+
+  cut() {
+    // this.orderForm.controls['img'].setValue(String(this.croppedImage));
+    this.imgPreview = this.croppedImage;
+    this.imageChangedEvent = '';
+    this.croppedImage = '';
+  }
+
+  deleteImg() {
+    this.imageChangedEvent = '';
+    this.imgPreview = '';
+    this.croppedImage = '';
+    this.orderForm.controls['img'].setValue('');
+  }
+
+  b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+    const byteCharacters = atob(b64Data);
+    let byteArrays = [];
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+        var byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
+    }
+    var blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }
+
+  blobToFile(theBlob, fileName): File{
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return <File>theBlob;
   }
 
 }

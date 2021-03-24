@@ -73,3 +73,15 @@
 app-columna {
   width: 100%;
 }
+
+
+.contenido-btn {
+  font-size: 10px;
+  display: grid;
+  justify-items: center;
+  margin: 0.5rem;
+  color: snow;
+  a {
+    color: snow;
+  }
+}

@@ -57,12 +57,38 @@
       <input matInput type="text" formControlName="url">
     </mat-form-field>
 
-    <mat-form-field>
+    <!-- <mat-form-field>
       <mat-label>Imagen URL</mat-label>
       <input matInput type="text" formControlName="img">
-    </mat-form-field>
+    </mat-form-field> -->
+    <div class="contenido-img">
+      <ng-container *ngIf="imgPreview; else addImg">
+        <img [src]="imgPreview" width="100%" />
+        <boton [icon]="'delete'" [text]="'Delete image'" (click)="deleteImg()"></boton>
+      </ng-container>
+      <ng-template #addImg>
+        <ng-container *ngIf="!imageChangedEvent">
+          <input class="input-file" type="file" name="file" id="file" accept="image/*" (change)="fileChangeEvent($event)"/>
+          <label for="file">
+            <span mat-menu-item class="btn">
+              <mat-icon>image</mat-icon> Subir imagen
+            </span>
+          </label>
+        </ng-container>
+        <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="4 / 3"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            *ngIf="imageChangedEvent"
+        ></image-cropper>
+        <boton [icon]="'content_cut'" [text]="'Save'" (click)="cut()" *ngIf="imageChangedEvent"></boton>
+      </ng-template>
+    </div>
   </form>
-  <div class="contenido-boton">
-      <boton [text]="data.type" [icon]="data.type === 'Edit' ? 'edit' : 'save'" (click)="editar()"></boton>
+  <div class="contenido-boton" *ngIf="!imageChangedEvent">
+      <boton [text]="data.type" [icon]="data.type === 'Edit' ? 'edit' : 'save'" (click)="veryfImage()"></boton>
   </div>
 </ng-template>

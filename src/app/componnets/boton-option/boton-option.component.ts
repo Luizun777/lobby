@@ -20,7 +20,7 @@ export class BotonOptionComponent implements OnInit {
 
   edit() {
     this.dialog.open(ModalEditComponent, {
-      width: this.grupo ? '400px' : '250px',
+      width: this.grupo ? '400px' : '400px',
       data: {type: this.type, info: this.data, grupo: this.grupo}
     });
   }
