@@ -27,8 +27,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    // urlApi: 'http://localhost:5000/api/lobby/'
-    urlApi: 'https://still-eyrie-33337.herokuapp.com/api/lobby/'
+    urlApi: 'http://localhost:5000/api/lobby/'
+    // urlApi: 'https://still-eyrie-33337.herokuapp.com/api/lobby/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -328,7 +328,8 @@ class ModalEditComponent {
             title: this.orderForm.value.nombre,
             url: this.orderForm.value.url,
             subtitle: this.orderForm.value.subNombre,
-            kanji: this.orderForm.value.kanji
+            kanji: this.orderForm.value.kanji,
+            privado: false
         };
         if (this.data.type === 'Edit') {
             this.listadosSrv.putDato(this.info._id, payload).subscribe((data) => {
@@ -581,10 +582,11 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListadosService", function() { return ListadosService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/environments/environment */ "AytR");
-/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/snack-bar */ "zHaW");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ "AytR");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/snack-bar */ "zHaW");
+
 
 
 
@@ -594,25 +596,28 @@ class ListadosService {
     constructor(_snackBar, http) {
         this._snackBar = _snackBar;
         this.http = http;
-        this.change = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.change = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     getGrupos() {
-        return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].urlApi}grupo-listdo`);
+        const options = {
+            params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpParams"]().append('key', localStorage.getItem('key'))
+        };
+        return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].urlApi}grupo-listdo`, options);
     }
     getListaTotal() {
-        return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].urlApi}lista`);
+        return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].urlApi}lista`);
     }
     putDato(id, data) {
         data.key = localStorage.getItem('key');
-        return this.http.put(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].urlApi}lista/${id}`, data);
+        return this.http.put(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].urlApi}lista/${id}`, data);
     }
     putGrupo(id, data) {
         data.key = localStorage.getItem('key');
-        return this.http.put(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].urlApi}grupo/${id}`, data);
+        return this.http.put(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].urlApi}grupo/${id}`, data);
     }
     agregarDato(data) {
         data.key = localStorage.getItem('key');
-        return this.http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].urlApi}lista`, data);
+        return this.http.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].urlApi}lista`, data);
     }
     alertaError(emit, message) {
         let mensaje = message ? message : '⚠️ Error: No eres Admin 🔑';
@@ -632,8 +637,8 @@ class ListadosService {
         return this.http.post('https://api.cloudinary.com/v1_1/dzbpfuieg/image/upload?upload_preset=me7wb9ao', file);
     }
 }
-ListadosService.ɵfac = function ListadosService_Factory(t) { return new (t || ListadosService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
-ListadosService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: ListadosService, factory: ListadosService.ɵfac, providedIn: 'root' });
+ListadosService.ɵfac = function ListadosService_Factory(t) { return new (t || ListadosService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"])); };
+ListadosService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: ListadosService, factory: ListadosService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
