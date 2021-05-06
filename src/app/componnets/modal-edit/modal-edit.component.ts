@@ -91,7 +91,8 @@ export class ModalEditComponent implements OnInit {
       title: this.orderForm.value.nombre,
       url: this.orderForm.value.url,
       subtitle: this.orderForm.value.subNombre,
-      kanji: this.orderForm.value.kanji
+      kanji: this.orderForm.value.kanji,
+      privado: false
     };
     if (this.data.type === 'Edit') {
       this.listadosSrv.putDato(this.info._id, payload).subscribe((data: any) => {

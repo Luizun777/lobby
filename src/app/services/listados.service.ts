@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
@@ -14,7 +14,10 @@ export class ListadosService {
   constructor(private _snackBar: MatSnackBar, private http: HttpClient) { }
 
   getGrupos(): Observable<any> {
-    return this.http.get(`${environment.urlApi}grupo-listdo`);
+    const options = {
+      params: new HttpParams().append('key', localStorage.getItem('key'))
+    };
+    return this.http.get(`${environment.urlApi}grupo-listdo`, options);
   }
 
   getListaTotal(): Observable<any> {
