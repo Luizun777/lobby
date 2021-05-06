@@ -27,8 +27,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    urlApi: 'http://localhost:5000/api/lobby/'
-    // urlApi: 'https://still-eyrie-33337.herokuapp.com/api/lobby/'
+    // urlApi: 'http://localhost:5000/api/lobby/'
+    urlApi: 'https://still-eyrie-33337.herokuapp.com/api/lobby/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
