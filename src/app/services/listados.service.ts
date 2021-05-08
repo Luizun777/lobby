@@ -9,9 +9,18 @@ import { environment } from 'src/environments/environment';
 })
 export class ListadosService {
 
+  admin: boolean = false;
+
   @Output() change: EventEmitter<void> = new EventEmitter();
 
   constructor(private _snackBar: MatSnackBar, private http: HttpClient) { }
+
+  validAdmin(): void {
+    const options = {
+      params: new HttpParams().append('key', localStorage.getItem('key'))
+    };
+    this.http.get(`${environment.urlApi}admin`, options).subscribe((rest: any) => this.admin = rest.admin);
+  }
 
   getGrupos(): Observable<any> {
     const options = {

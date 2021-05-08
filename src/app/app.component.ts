@@ -13,9 +13,10 @@ import { ListadosService } from './services/listados.service';
 export class AppComponent {
   title = 'lobby-app';
 
-  constructor() {
+  constructor(private listadosService: ListadosService) {
     if (!localStorage.getItem('key')) {
       localStorage.setItem('key', 'No Admin');
     }
+    this.listadosService.validAdmin();
   }
 }
