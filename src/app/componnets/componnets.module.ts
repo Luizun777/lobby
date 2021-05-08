@@ -15,6 +15,8 @@ import { ModalEditComponent } from './modal-edit/modal-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   imports: [
@@ -28,7 +30,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    ImageCropperModule
+    ImageCropperModule,
+    MatCheckboxModule,
+    MatFormFieldModule
   ],
   declarations: [
     TarjetaComponent,

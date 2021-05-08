@@ -51,16 +51,16 @@
       <mat-label>Kanji</mat-label>
       <input matInput type="text" formControlName="kanji">
     </mat-form-field>
-  
+
+    <section class="checkbox" *ngIf="listadosSrv.admin">
+      <mat-checkbox formControlName="privado">Privado</mat-checkbox>
+    </section>
+
     <mat-form-field>
       <mat-label>URL</mat-label>
       <input matInput type="text" formControlName="url">
     </mat-form-field>
 
-    <!-- <mat-form-field>
-      <mat-label>Imagen URL</mat-label>
-      <input matInput type="text" formControlName="img">
-    </mat-form-field> -->
     <div class="contenido-img">
       <ng-container *ngIf="imgPreview; else addImg">
         <img [src]="imgPreview" width="100%" />
@@ -89,6 +89,6 @@
     </div>
   </form>
   <div class="contenido-boton" *ngIf="!imageChangedEvent">
-      <boton [text]="data.type" [icon]="data.type === 'Edit' ? 'edit' : 'save'" (click)="veryfImage()"></boton>
+      <boton [text]="data.type" [icon]="data.type === 'Edit' ? 'edit' : 'save'" (click)="veryfImage()" [desactivado]="!orderForm.valid"></boton>
   </div>
 </ng-template>

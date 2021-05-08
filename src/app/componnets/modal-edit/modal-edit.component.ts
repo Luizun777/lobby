@@ -17,6 +17,7 @@ export class ModalEditComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
   imgFile: File;
+  btnLoading: boolean;
 
   grupo: boolean;
   info: any;
@@ -27,7 +28,7 @@ export class ModalEditComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private listadosSrv: ListadosService,
+    public listadosSrv: ListadosService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ModalEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -44,6 +45,7 @@ export class ModalEditComponent implements OnInit {
         url: this.info.url,
         subNombre: this.info.subtitle,
         kanji: this.info.kanji,
+        privado: this.info.privado,
         img: this.info.imgUrl
       });
     }
@@ -59,7 +61,8 @@ export class ModalEditComponent implements OnInit {
       nombre: new FormControl('',[Validators.required]),
       url: new FormControl('',[Validators.required]),
       subNombre: new FormControl('',[Validators.required]),
-      kanji: new FormControl('',[Validators.required]),
+      kanji: new FormControl(''),
+      privado: new FormControl(false),
       img: new FormControl('')
     });
   }
@@ -70,7 +73,9 @@ export class ModalEditComponent implements OnInit {
   }
 
   veryfImage() {
-    // "4ecd282a45020536e965a548f1b409a5"
+    if (!this.orderForm.valid) {
+      return
+    }
     if (this.imgFile) {
       const form = new FormData();
       form.append('file', this.imgFile);
@@ -86,13 +91,21 @@ export class ModalEditComponent implements OnInit {
   }
 
   editar() {
+    const {
+      img: imgUrl,
+      nombre: title,
+      url,
+      subNombre: subtitle,
+      kanji,
+      privado
+    } = this.orderForm.value;
     const payload = {
-      imgUrl: this.orderForm.value.img,
-      title: this.orderForm.value.nombre,
-      url: this.orderForm.value.url,
-      subtitle: this.orderForm.value.subNombre,
-      kanji: this.orderForm.value.kanji,
-      privado: false
+      imgUrl,
+      title,
+      url,
+      subtitle,
+      kanji,
+      privado
     };
     if (this.data.type === 'Edit') {
       this.listadosSrv.putDato(this.info._id, payload).subscribe((data: any) => {
@@ -176,12 +189,8 @@ export class ModalEditComponent implements OnInit {
     const file = this.blobToFile(blob, 'img.png');
     this.imgFile = new File([file], "img.png", {type: "image/png"});
   }
-  imageLoaded(image: HTMLImageElement) {
-    // show cropper
-  }
 
   cut() {
-    // this.orderForm.controls['img'].setValue(String(this.croppedImage));
     this.imgPreview = this.croppedImage;
     this.imageChangedEvent = '';
     this.croppedImage = '';
@@ -194,7 +203,7 @@ export class ModalEditComponent implements OnInit {
     this.orderForm.controls['img'].setValue('');
   }
 
-  b64toBlob(b64Data, contentType, sliceSize) {
+  b64toBlob(b64Data: any, contentType: any, sliceSize: any) {
     contentType = contentType || '';
     sliceSize = sliceSize || 512;
     const byteCharacters = atob(b64Data);
@@ -212,7 +221,7 @@ export class ModalEditComponent implements OnInit {
     return blob;
   }
 
-  blobToFile(theBlob, fileName): File{
+  blobToFile(theBlob: any, fileName: any): File{
     theBlob.lastModifiedDate = new Date();
     theBlob.name = fileName;
     return <File>theBlob;
