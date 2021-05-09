@@ -4,13 +4,24 @@
     </div>
 </ng-container>
 <ng-template #ok>
-    <div class="columna-grupo">
-        <ng-container *ngFor="let grupo of grupos">
-            <div class="example-box">
-                <app-columna [listado]="grupo"></app-columna>
-            </div>
-        </ng-container>
-    </div>
+    <ng-container *ngIf="this.colum; else row">
+        <div class="columna-grupo">
+            <ng-container *ngFor="let grupo of grupos">
+                <div class="example-box">
+                    <app-columna [listado]="grupo"></app-columna>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+    <ng-template #row>
+        <div class="columna-grupo-row">
+            <ng-container *ngFor="let grupo of grupos">
+                <div class="example-box">
+                    <app-columna [listado]="grupo"></app-columna>
+                </div>
+            </ng-container>
+        </div>
+    </ng-template>
 </ng-template>
 <div class="contenido-btn">
     <a href="https://luizun.com/#/cv/Inicio" target="_blank">by Luizun</a>

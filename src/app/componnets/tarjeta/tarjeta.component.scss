@@ -11,6 +11,7 @@
   }
   .contenido-texto {
     display: grid;
+    padding-right: 1rem;
     .title {
       font-size: 24px;
       font-weight: 500;
@@ -22,6 +23,15 @@
   }
 }
 .contenido-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0.5rem;
   text-align: end;
   color: snow;
+}
+
+.btn-edit {
+  position: absolute;
+  right: 0;
+  top: 0;
 }

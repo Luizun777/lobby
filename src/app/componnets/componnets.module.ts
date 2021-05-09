@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   imports: [
@@ -32,21 +34,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     ImageCropperModule,
     MatCheckboxModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatRadioModule
   ],
   declarations: [
     TarjetaComponent,
     ColumnaComponent,
     BotonOptionComponent,
     BotonComponent,
-    ModalEditComponent
+    ModalEditComponent,
+    SidenavComponent
   ],
   exports: [
     TarjetaComponent,
     ColumnaComponent,
     BotonOptionComponent,
     BotonComponent,
-    ModalEditComponent
+    ModalEditComponent,
+    SidenavComponent
   ]
 })
 export class CompoentsModule { }

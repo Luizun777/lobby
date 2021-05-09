@@ -1,0 +1,16 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer [mode]="'over'" class="sidenav" mode="side" position="end">
+      <sidenav></sidenav>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+      <div [ngClass]="{'contenido-colum': colum, 'contenido-row': !colum}">
+          <grupos></grupos>
+      </div>
+      <div class="contenido-btn">
+        <button class="menu" type="button" mat-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </div>
+</mat-drawer-container>

@@ -4,7 +4,9 @@
     <div class="title">{{datos.title}}</div>
     <div class="subtitle">{{datos.kanji}} /{{datos.subtitle}}/</div>
   </div>
-  <boton-option [data]="datos" [type]="'Edit'" [grupo]="false"></boton-option>
+  <div class="btn-edit">
+    <boton-option [data]="datos" [type]="'Edit'" [grupo]="false"></boton-option>
+  </div>
 </div>
 <div class="contenido-btn">
   <button mat-button (click)="abirEnlace()">GO!</button>

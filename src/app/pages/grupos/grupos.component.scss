@@ -1,6 +1,8 @@
 @import '../../../styles.scss';
 
 .columna-grupo {
+  background: #1c1e219c;
+  backdrop-filter: blur(10px);
   // display: flex;
   // flex-flow: wrap;
   // justify-content: center;
@@ -56,6 +58,12 @@
     // }
 }
 
+.columna-grupo-row {
+  display: flow-root;
+  background: #1c1e219c;
+  backdrop-filter: blur(10px);
+}
+
 .contenido-load {
   position: absolute;
   top: 50%;
@@ -65,14 +73,14 @@
 }
 
 .example-box {
-  border-right: solid 1px #242526;
+  // border-right: solid 1px #242526;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
   // cursor: move;
-  background: #1c1e21;
+  // background: #1c1e21;
   font-size: 14px;
   flex-grow: 1;
   flex-basis: 0;

@@ -1,0 +1,64 @@
+@import '../../styles';
+
+.contenido-colum {
+  margin-top: 10%;
+  width: 100%;
+  display: grid;
+  margin: inherit;
+  justify-self: center;
+  @include tableta {
+    width: 100%;
+    margin: inherit;
+    justify-content: center;
+  }
+}
+
+.contenido-row {
+  width: 68%;
+  margin: 0 auto;
+}
+
+.contenido-btn {
+  font-size: 10px;
+  display: grid;
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+  // transform: translate(-50%, -50%);
+  justify-content: center;
+  justify-items: center;
+  color: snow;
+  a {
+    color: snow;
+  }
+}
+
+.example-container {
+    width: 100%;
+    height: auto;
+    background-image: url("https://res.cloudinary.com/dzbpfuieg/image/upload/v1616549192/iswn9m5wv2gw1znq6lmd.jpg");
+    background-size: cover;
+    // background: #18191a;
+}
+
+.sidenav-content {
+    display: flex;
+    height: 100vh;
+    align-items: baseline;
+}
+
+.sidenav {
+    padding: 20px;
+    background: #18191a;
+}
+
+.menu {
+  position: fixed;
+  top: 0.5rem;
+  color: snow;
+  background: #ffffff1c;
+}
+
+.contenido-btn {
+  width: 4rem;
+}

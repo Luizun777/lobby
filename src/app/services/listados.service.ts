@@ -12,6 +12,7 @@ export class ListadosService {
   admin: boolean = false;
 
   @Output() change: EventEmitter<void> = new EventEmitter();
+  @Output() ajusteTarjetas: EventEmitter<void> = new EventEmitter();
 
   constructor(private _snackBar: MatSnackBar, private http: HttpClient) { }
 
