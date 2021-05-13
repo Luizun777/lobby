@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,14 +23,14 @@ import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    CommonModule,
     DragDropModule,
+    FormsModule,
     MatCardModule,
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
     MatDialogModule,
-    FormsModule,
     ReactiveFormsModule,
     MatInputModule,
     ImageCropperModule,
