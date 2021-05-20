@@ -7,7 +7,7 @@
       <div [ngClass]="{'contenido-colum': colum, 'contenido-row': !colum}">
           <grupos></grupos>
       </div>
-      <div class="contenido-btn">
+      <div class="contenido-btn" *ngIf="isAuth">
         <button class="menu" type="button" mat-button (click)="drawer.toggle()">
           <mat-icon>menu</mat-icon>
         </button>

@@ -13,7 +13,7 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     // this.auth.loginWithRedirect();
     this.auth.isAuthenticated$.subscribe((auth) => {
-      console.log(auth);
+      // console.log(auth);
     });
   }
 

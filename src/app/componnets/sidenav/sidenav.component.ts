@@ -20,7 +20,6 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
     this.favoriteSeason = localStorage.getItem('ajuste-tarjetas');
     this.auth.user$.subscribe((user: any) => {
-      console.log(user);
       const {name, picture, email, nickname, sub} = user;
       this.name = nickname;
       this.img = picture;

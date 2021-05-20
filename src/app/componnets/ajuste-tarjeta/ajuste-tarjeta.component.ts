@@ -32,12 +32,13 @@ export class AjusteTarjetaComponent implements OnInit, OnDestroy {
   }
 
   getGrupos(): void {
-    this.listadosSrv.getGrupos().subscribe((grupos: any) => {
-      this.grupos = grupos.result;
-      if (this.grupos.length === 0) {
-        this.crearGrupo();
-      }
-    });
+    this.listadosSrv.getGrupos().subscribe(
+      (grupos: any) => this.grupos = grupos.result,
+      (error) => {
+        if (!error.error.ordenDB) {
+          this.crearGrupo();
+        }
+      });
   }
 
   drop(event: CdkDragDrop<string[]>) {

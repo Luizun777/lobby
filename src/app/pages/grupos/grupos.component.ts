@@ -38,7 +38,7 @@ export class GruposComponent implements OnInit, OnDestroy {
     this.listadosSrv.getGrupos().subscribe((grupos: any) => {
       this.cargando = !grupos.ok;
       this.grupos = grupos.result;
-    });
+    }, (error) => this.cargando = error.ok);
   }
 
   drop(event: CdkDragDrop<string[]>) {

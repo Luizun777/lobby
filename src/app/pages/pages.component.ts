@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { Subscription } from 'rxjs';
 import { ListadosService } from '../services/listados.service';
 
@@ -11,10 +12,16 @@ export class PagesComponent implements OnInit {
 
   colum: boolean;
   columSub: Subscription;
+  isAuth: boolean;
 
-  constructor(private listadosSrv: ListadosService) { }
+  constructor(private listadosSrv: ListadosService, public auth: AuthService) { }
 
   ngOnInit(): void {
+    this.isAuth = false;
+    this.auth.user$.subscribe(
+      () => this.isAuth = true,
+      () => this.isAuth = false
+    );
     this.changeColums();
     this.columSub = this.listadosSrv.ajusteTarjetas.subscribe(() => this.changeColums());
   }
