@@ -1046,7 +1046,6 @@ class SidenavComponent {
     ngOnInit() {
         this.favoriteSeason = localStorage.getItem('ajuste-tarjetas');
         this.auth.user$.subscribe((user) => {
-            console.log(user);
             const { name, picture, email, nickname, sub } = user;
             this.name = nickname;
             this.img = picture;
@@ -1201,7 +1200,7 @@ const routes = [
 class AppRoutingModule {
 }
 AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
-AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ factory: function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); }, imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, { relativeLinkResolution: 'legacy' })], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] });
+AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ factory: function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); }, imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, { relativeLinkResolution: 'legacy', useHash: true })], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] }); })();
 
 
@@ -1336,9 +1335,8 @@ class AjusteTarjetaComponent {
         this.listadosSrv.crearGrupo().subscribe(() => this.listadosSrv.change.emit());
     }
     getGrupos() {
-        this.listadosSrv.getGrupos().subscribe((grupos) => {
-            this.grupos = grupos.result;
-            if (this.grupos.length === 0) {
+        this.listadosSrv.getGrupos().subscribe((grupos) => this.grupos = grupos.result, (error) => {
+            if (!error.error.ordenDB) {
                 this.crearGrupo();
             }
         });

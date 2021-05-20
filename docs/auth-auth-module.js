@@ -64,7 +64,7 @@ class AuthComponent {
     ngOnInit() {
         // this.auth.loginWithRedirect();
         this.auth.isAuthenticated$.subscribe((auth) => {
-            console.log(auth);
+            // console.log(auth);
         });
     }
     login() {
