@@ -73,7 +73,7 @@ export class ModalEditComponent implements OnInit {
   }
 
   veryfImage() {
-    if (!this.orderForm.valid) {
+    if (!this.orderForm.valid || this.btnLoading) {
       return
     }
     if (this.imgFile) {
@@ -91,6 +91,7 @@ export class ModalEditComponent implements OnInit {
   }
 
   editar() {
+    this.btnLoading = true;
     const {
       img: imgUrl,
       nombre: title,
@@ -117,6 +118,7 @@ export class ModalEditComponent implements OnInit {
           this.listadosSrv.alertaOk();
         }
         this.listadosSrv.change.emit();
+        this.btnLoading = true;
       });
     } else {
       this.listadosSrv.agregarDato(payload).subscribe((data: any) => {
@@ -126,6 +128,7 @@ export class ModalEditComponent implements OnInit {
         } else {
           this.listadosSrv.alertaOk();
         }
+        this.btnLoading = true;
       });
     }
   }
@@ -140,8 +143,6 @@ export class ModalEditComponent implements OnInit {
       if (!data.ok) {
         this.dialogRef.close();
         this.listadosSrv.alertaError(true);
-      } else {
-        this.listadosSrv.alertaOk();
       }
     });
   }

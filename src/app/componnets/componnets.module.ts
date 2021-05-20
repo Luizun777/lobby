@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { AjusteTarjetaComponent } from './ajuste-tarjeta/ajuste-tarjeta.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { MatRadioModule } from '@angular/material/radio';
     BotonOptionComponent,
     BotonComponent,
     ModalEditComponent,
-    SidenavComponent
+    SidenavComponent,
+    AjusteTarjetaComponent
   ],
   exports: [
     TarjetaComponent,

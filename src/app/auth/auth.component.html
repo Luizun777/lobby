@@ -1,1 +1,7 @@
 <h1>auth works!</h1>
+<h1>
+    {{(auth.isAuthenticated$ | async) ? 'LOGGIN' : 'NO LOGGIN'}}
+</h1>
+
+<button *ngIf="!(auth.isAuthenticated$ | async)" (click)="login()">Log in</button>
+<button *ngIf="(auth.isAuthenticated$ | async)" (click)="logout()">Cerrar</button>

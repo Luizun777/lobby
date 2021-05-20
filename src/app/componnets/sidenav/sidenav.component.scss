@@ -2,8 +2,14 @@
   color: snow;
 }
 
-h3 {
+h1 {
   font-weight: bold;
+  margin-bottom: 8px;
+}
+img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
 }
 
 .radio-group {
@@ -14,4 +20,13 @@ h3 {
 
 .radio-button {
   margin: 5px;
+}
+
+.contenido-perfil {
+  display: grid;
+  justify-items: center;
+  margin-bottom: 8px;
+  h3 {
+    margin-bottom: 0px;
+  }
 }

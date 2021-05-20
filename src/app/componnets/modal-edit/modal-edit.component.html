@@ -3,7 +3,7 @@
     <div class="example-container">
       <mat-form-field>
         <mat-label>Nombre</mat-label>
-        <input matInput [value]="info.name" (keyup)="changeName($event)">
+        <input matInput [value]="info.name" (keyup)="changeName($event)" maxlength="20">
       </mat-form-field>
       <div
         cdkDropList
@@ -39,17 +39,17 @@
   <form [formGroup]="orderForm">
     <mat-form-field>
       <mat-label>Nombre</mat-label>
-      <input matInput type="text" formControlName="nombre">
+      <input matInput type="text" formControlName="nombre" maxlength="20">
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Abreviación</mat-label>
-      <input matInput type="text" formControlName="subNombre">
+      <input matInput type="text" formControlName="subNombre" maxlength="4">
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Kanji</mat-label>
-      <input matInput type="text" formControlName="kanji">
+      <input matInput type="text" formControlName="kanji" maxlength="3">
     </mat-form-field>
 
     <section class="checkbox" *ngIf="listadosSrv.admin">
@@ -89,6 +89,6 @@
     </div>
   </form>
   <div class="contenido-boton" *ngIf="!imageChangedEvent">
-      <boton [text]="data.type" [icon]="data.type === 'Edit' ? 'edit' : 'save'" (click)="veryfImage()" [desactivado]="!orderForm.valid"></boton>
+      <boton [icon]="btnLoading ? 'autorenew' : null" [text]="!btnLoading ? data.type : null" [icon]="data.type === 'Edit' ? 'edit' : 'save'" (click)="veryfImage()" [loading]="btnLoading" [desactivado]="!orderForm.valid && !btnLoading"></boton>
   </div>
 </ng-template>

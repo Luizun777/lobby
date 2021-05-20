@@ -1,4 +1,13 @@
-<h3>Ajustes</h3>
+<h1>Perfil</h1>
+<div class="contenido-perfil">
+  <h3>{{name}}</h3>
+  <img [src]="img" [alt]="name">
+  <h3>{{email}}</h3>
+  <button mat-button color="warn" (click)="auth.logout()">Cerrar sesión</button>
+</div>
+<h1>Tarjetas</h1>
+<ajuste-tarjeta></ajuste-tarjeta>
+<!-- <h1>Ajustes</h1>
 <label id="radio-group-label">Ajuste de tarjetas</label>
 <mat-radio-group
   aria-labelledby="radio-group-label"
@@ -8,4 +17,4 @@
   <mat-radio-button class="radio-button" *ngFor="let season of seasons" [value]="season">
     {{season}}
   </mat-radio-button>
-</mat-radio-group>
+</mat-radio-group> -->

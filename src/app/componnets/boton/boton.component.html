@@ -1,4 +1,4 @@
-<button mat-menu-item [disabled]="desactivado">
-    <mat-icon>{{icon}}</mat-icon>
-    <span>{{text}}</span>
+<button mat-menu-item [disabled]="desactivado" [ngClass]="{'only': (icon && !text) || (!icon && text)}">
+    <mat-icon *ngIf="icon" [ngClass]="{'rotating': loading}">{{icon}}</mat-icon>
+    <span *ngIf="text">{{text}}</span>
 </button>

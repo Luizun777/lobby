@@ -1,6 +1,18 @@
 button {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 0.5rem;
+    align-items: center;
+    justify-items: center;
     color: snow;
+    &.only {
+        grid-template-columns: auto;
+    }
     mat-icon {
         color: snow;
     }
+}
+.mat-menu-item .mat-icon {
+    color: snow !important;
+    margin-right: 0px !important;
 }

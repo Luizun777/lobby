@@ -1,0 +1,13 @@
+<div cdkDropList class="list" (cdkDropListDropped)="drop($event)">
+  <div class="box" *ngFor="let grupo of grupos" cdkDrag>
+    <div class="custom-placeholder" *cdkDragPlaceholder></div>
+    {{grupo.name}}
+  </div>
+</div>
+<ng-container *ngIf="grupos.length < 4">
+    <div class="contenido-btn">
+        <button mat-button color="basic" (click)="crearGrupo()">
+            <mat-icon>add</mat-icon> Agregar tarjeta
+        </button>
+    </div>
+</ng-container>

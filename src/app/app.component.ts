@@ -20,6 +20,6 @@ export class AppComponent {
     if (!localStorage.getItem('ajuste-tarjetas')) {
       localStorage.setItem('ajuste-tarjetas', 'Column');
     }
-    this.listadosService.validAdmin();
+    // this.listadosService.validAdmin();
   }
 }

@@ -10,6 +10,7 @@ export class BotonComponent implements OnInit {
   @Input() text: string;
   @Input() icon: string;
   @Input() desactivado: boolean = false;
+  @Input() loading: boolean = false;
 
   constructor() { }
 

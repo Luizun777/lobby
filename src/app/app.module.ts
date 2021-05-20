@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompoentsModule } from './componnets/componnets.module';
 import { MaterialModule } from './material-components/material-components.module';
+import { AuthModule } from '@auth0/auth0-angular';
 
 registerLocaleData(es);
 
@@ -26,7 +27,13 @@ registerLocaleData(es);
     CompoentsModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AuthModule.forRoot({
+      domain: 'luizun.auth0.com',
+      clientId: 'tDYc9Szsf1vWk3KM5Pv3Ty5fCOSwuMA1',
+      cacheLocation: 'localstorage',
+      useRefreshTokens: true
+    }),
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]
