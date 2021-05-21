@@ -39,7 +39,7 @@
   <form [formGroup]="orderForm">
     <mat-form-field>
       <mat-label>Nombre</mat-label>
-      <input matInput type="text" formControlName="nombre" maxlength="20">
+      <input matInput type="text" formControlName="nombre" maxlength="20" (focusout)="autoSubName($event)">
     </mat-form-field>
 
     <mat-form-field>
@@ -61,32 +61,34 @@
       <input matInput type="text" formControlName="url">
     </mat-form-field>
 
-    <div class="contenido-img">
-      <ng-container *ngIf="imgPreview; else addImg">
-        <img [src]="imgPreview" width="100%" />
-        <boton [icon]="'delete'" [text]="'Delete image'" (click)="deleteImg()"></boton>
-      </ng-container>
-      <ng-template #addImg>
-        <ng-container *ngIf="!imageChangedEvent">
-          <input class="input-file" type="file" name="file" id="file" accept="image/*" (change)="fileChangeEvent($event)"/>
-          <label for="file">
-            <span mat-menu-item class="btn">
-              <mat-icon>image</mat-icon> Subir imagen
-            </span>
-          </label>
+    <ng-container *ngIf="data.type === 'Edit'">
+      <div class="contenido-img">
+        <ng-container *ngIf="imgPreview; else addImg">
+          <img [src]="imgPreview" width="100%" />
+          <boton [icon]="'delete'" [text]="'Delete image'" (click)="deleteImg()"></boton>
         </ng-container>
-        <image-cropper
-            [imageChangedEvent]="imageChangedEvent"
-            [maintainAspectRatio]="true"
-            [aspectRatio]="4 / 3"
-            format="png"
-            (imageCropped)="imageCropped($event)"
-            (imageLoaded)="imageLoaded()"
-            *ngIf="imageChangedEvent"
-        ></image-cropper>
-        <boton [icon]="'content_cut'" [text]="'Save'" (click)="cut()" *ngIf="imageChangedEvent"></boton>
-      </ng-template>
-    </div>
+        <ng-template #addImg>
+          <ng-container *ngIf="!imageChangedEvent">
+            <input class="input-file" type="file" name="file" id="file" accept="image/*" (change)="fileChangeEvent($event)"/>
+            <label for="file">
+              <span mat-menu-item class="btn">
+                <mat-icon>image</mat-icon> Subir imagen
+              </span>
+            </label>
+          </ng-container>
+          <image-cropper
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="4 / 3"
+              format="png"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded()"
+              *ngIf="imageChangedEvent"
+          ></image-cropper>
+          <boton [icon]="'content_cut'" [text]="'Save'" (click)="cut()" *ngIf="imageChangedEvent"></boton>
+        </ng-template>
+      </div>
+    </ng-container>
   </form>
   <div class="contenido-boton" *ngIf="!imageChangedEvent">
       <boton [icon]="btnLoading ? 'autorenew' : null" [text]="!btnLoading ? data.type : null" [icon]="data.type === 'Edit' ? 'edit' : 'save'" (click)="veryfImage()" [loading]="btnLoading" [desactivado]="!orderForm.valid && !btnLoading"></boton>

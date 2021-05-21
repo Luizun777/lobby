@@ -181,7 +181,8 @@ export class ModalEditComponent implements OnInit {
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
   }
-  imageCropped(event: ImageCroppedEvent) {
+
+  imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.base64;
     const block = this.croppedImage.split(";");
     const contentType = block[0].split(":")[1];
@@ -191,20 +192,20 @@ export class ModalEditComponent implements OnInit {
     this.imgFile = new File([file], "img.png", {type: "image/png"});
   }
 
-  cut() {
+  cut(): void {
     this.imgPreview = this.croppedImage;
     this.imageChangedEvent = '';
     this.croppedImage = '';
   }
 
-  deleteImg() {
+  deleteImg(): void {
     this.imageChangedEvent = '';
     this.imgPreview = '';
     this.croppedImage = '';
     this.orderForm.controls['img'].setValue('');
   }
 
-  b64toBlob(b64Data: any, contentType: any, sliceSize: any) {
+  b64toBlob(b64Data: any, contentType: any, sliceSize: any): any {
     contentType = contentType || '';
     sliceSize = sliceSize || 512;
     const byteCharacters = atob(b64Data);
@@ -222,10 +223,20 @@ export class ModalEditComponent implements OnInit {
     return blob;
   }
 
-  blobToFile(theBlob: any, fileName: any): File{
+  blobToFile(theBlob: any, fileName: any): File {
     theBlob.lastModifiedDate = new Date();
     theBlob.name = fileName;
     return <File>theBlob;
+  }
+
+  autoSubName(event: Event): any {
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (this.data.type === 'Edit') {
+      return;
+    }
+    const splitName = filterValue.split(' ');
+    const nuevoSubNombre = splitName.length === 1 ? splitName[0].slice(0,2).toLocaleLowerCase() : `${splitName[0].slice(0,1).toLocaleLowerCase()}${splitName[1].slice(0,1).toLocaleLowerCase()}`;
+    this.orderForm.controls['subNombre'].setValue(nuevoSubNombre);
   }
 
 }
