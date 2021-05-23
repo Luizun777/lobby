@@ -32,4 +32,8 @@ export class ColumnaComponent implements OnInit {
     this.colum = localStorage.getItem('ajuste-tarjetas') === 'Column';
   }
 
+  tarjetaSelect(): void {
+    this.listadosSrv.idGrupo = this.listado._id;
+  }
+
 }

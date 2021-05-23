@@ -3,6 +3,7 @@
 </button>
 <mat-menu #menu="matMenu" class="caja">
     <boton [text]="'Copy url'" [icon]="'content_copy'" *ngIf="!grupo" (click)="copiarEnlace()"></boton>
+    <boton [text]="'Quitar'" [icon]="'close'" *ngIf="!grupo" (click)="eliminar(false)"></boton>
     <boton [text]="'Editar'" [icon]="'edit'" (click)="edit()"></boton>
-    <!-- <boton [text]="'Eliminar'" [icon]="'close'" *ngIf="!grupo"></boton> -->
+    <boton [text]="'Eliminar'" [icon]="'delete'" (click)="eliminar(true)"></boton>
 </mat-menu>

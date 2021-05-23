@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEditComponent } from '../modal-edit/modal-edit.component';
+import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'boton-option',
@@ -40,6 +41,12 @@ export class BotonOptionComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(selBox);
     setTimeout(() => this.clickCopy = false, 1500);
+  }
+
+  eliminar(eliminar: boolean) {
+    this.dialog.open(ModalConfirmComponent, {
+      data: {eliminar, info: this.data, grupo: this.grupo}
+    });
   }
 
 }

@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { AjusteTarjetaComponent } from './ajuste-tarjeta/ajuste-tarjeta.component';
+import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { AjusteTarjetaComponent } from './ajuste-tarjeta/ajuste-tarjeta.componen
     BotonComponent,
     ModalEditComponent,
     SidenavComponent,
-    AjusteTarjetaComponent
+    AjusteTarjetaComponent,
+    ModalConfirmComponent
   ],
   exports: [
     TarjetaComponent,
@@ -54,7 +56,8 @@ import { AjusteTarjetaComponent } from './ajuste-tarjeta/ajuste-tarjeta.componen
     BotonOptionComponent,
     BotonComponent,
     ModalEditComponent,
-    SidenavComponent
+    SidenavComponent,
+    ModalConfirmComponent
   ]
 })
 export class CompoentsModule { }

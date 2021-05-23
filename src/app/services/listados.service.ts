@@ -12,6 +12,7 @@ export class ListadosService {
 
   admin: boolean = false;
   client: string;
+  idGrupo: string;
 
   @Output() change: EventEmitter<void> = new EventEmitter();
   @Output() ajusteTarjetas: EventEmitter<void> = new EventEmitter();
@@ -57,6 +58,21 @@ export class ListadosService {
   putGrupo(id: number, data: any): Observable<any> {
     data.client_id = this.client;
     return this.http.put(`${environment.urlApi}grupo/${id}`, data);
+  }
+
+  quitarLista(idGrupo: string, idTarjeta: string): Observable<any> {
+    const data = {
+      client_id: this.client
+    };
+    return this.http.put(`${environment.urlApi}grupo/${idGrupo}/lista/${idTarjeta}`, data);
+  }
+
+  eliminarEnlace(idGrupo: string, idTarjeta: string): Observable<any> {
+    return this.http.delete(`${environment.urlApi}grupo/${idGrupo}/lista/${idTarjeta}`);
+  }
+
+  eliminarGrupo(idGrupo: string): Observable<any> {
+    return this.http.delete(`${environment.urlApi}grupo/${idGrupo}`);
   }
 
   agregarDato(data: any) : Observable<any> {
