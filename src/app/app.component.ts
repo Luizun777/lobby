@@ -20,6 +20,12 @@ export class AppComponent {
     if (!localStorage.getItem('ajuste-tarjetas')) {
       localStorage.setItem('ajuste-tarjetas', 'Column');
     }
+    if (!localStorage.getItem('ajuste-subnombre')) {
+      localStorage.setItem('ajuste-subnombre', 'false');
+    }
+    if (!localStorage.getItem('ajuste-kanji')) {
+      localStorage.setItem('ajuste-kanji', 'false');
+    }
     // this.listadosService.validAdmin();
   }
 }

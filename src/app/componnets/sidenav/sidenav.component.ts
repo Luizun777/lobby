@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ListadosService } from 'src/app/services/listados.service';
 import { AuthService } from '@auth0/auth0-angular';
+import { EditPerfilComponent } from '../edit-perfil/edit-perfil.component';
+import { ModalEditComponent } from '../modal-edit/modal-edit.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'sidenav',
@@ -10,26 +13,70 @@ import { AuthService } from '@auth0/auth0-angular';
 export class SidenavComponent implements OnInit {
 
   favoriteSeason: string;
+  ajusteSubnombre: boolean;
+  ajusteKanji: boolean;
   seasons: string[] = ['Column', 'Row'];
   name: string = '';
   email: string = '';
   img: string = 'https://material.angular.io/assets/img/examples/shiba1.jpg';
 
-  constructor(private listadosService: ListadosService, public auth: AuthService) { }
+  constructor(
+    public dialog: MatDialog,
+    private listadosService: ListadosService, 
+    public auth: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.favoriteSeason = localStorage.getItem('ajuste-tarjetas');
+    this.ajusteSubnombre = Boolean(localStorage.getItem('ajuste-subnombre'));
+    this.ajusteKanji = Boolean(localStorage.getItem('ajuste-kanji'));
     this.auth.user$.subscribe((user: any) => {
-      const {name, picture, email, nickname, sub} = user;
+      const {picture, email, nickname} = user;
       this.name = nickname;
       this.img = picture;
       this.email = email;
+      this.getUser();
     });
   }
 
   ajusteTarjeta(event: any): void {
     localStorage.setItem('ajuste-tarjetas', event);
     this.listadosService.ajusteTarjetas.emit();
+  }
+
+  editarPerfil(): void {
+    const data = {
+      nickname: 'Nuevo User'
+    };
+    this.dialog.open(EditPerfilComponent, { data });
+    // const paload = {
+    //   nickname: 'Nuevo User',
+    //   picture: this.listadosService.picture,
+    // };
+    // this.listadosService.putUser(paload).subscribe((edit: any) => {
+    //   this.getUser();
+    // })
+  }
+
+  getUser(): void {
+    this.listadosService.getUser().subscribe((userDB: any) => {
+      const { nickname, picture } = userDB.result;
+      this.name = nickname ? nickname : this.name;
+      this.img = picture ? picture : this.img;
+    });
+  }
+
+  agregarEnlace(): void {
+    const dialogRef = this.dialog.open(ModalEditComponent, {
+      width: '250px',
+      data: {type: 'Crear', info: {}, grupo: false}
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      // setTimeout(() => {
+      //   // this.getListado();
+      // }, 1000);
+    });
   }
 
 }

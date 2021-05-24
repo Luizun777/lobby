@@ -22,6 +22,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { AjusteTarjetaComponent } from './ajuste-tarjeta/ajuste-tarjeta.component';
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
+import { EditPerfilComponent } from './edit-perfil/edit-perfil.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -38,7 +40,8 @@ import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
     ImageCropperModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSlideToggleModule
   ],
   declarations: [
     TarjetaComponent,
@@ -48,7 +51,8 @@ import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
     ModalEditComponent,
     SidenavComponent,
     AjusteTarjetaComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    EditPerfilComponent
   ],
   exports: [
     TarjetaComponent,

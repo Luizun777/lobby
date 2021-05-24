@@ -13,15 +13,24 @@ export class ListadosService {
   admin: boolean = false;
   client: string;
   idGrupo: string;
+  totalTarjetas: number = 0;
 
   @Output() change: EventEmitter<void> = new EventEmitter();
   @Output() ajusteTarjetas: EventEmitter<void> = new EventEmitter();
 
   constructor(private _snackBar: MatSnackBar, private http: HttpClient, public auth: AuthService) {
-    this.auth.user$.subscribe((user: any) => {
-      const { sub } = user;
-      this.client = sub.replace('auth0|','');
-    });
+    this.auth.user$.subscribe((user: any) => this.client = user.sub.replace('auth0|',''));
+  }
+
+  getUser(): Observable<any> {
+    const options = {
+      params: new HttpParams().append('client_id', this.client)
+    };
+    return this.http.get(`${environment.urlApi}usuario`, options);
+  }
+
+  putUser(data: any): Observable<any> {
+    return this.http.put(`${environment.urlApi}usuario/${this.client}`, data);
   }
 
   crearGrupo() : Observable<any> {

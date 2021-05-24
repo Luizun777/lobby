@@ -1,15 +1,27 @@
-<h1>Perfil</h1>
+<div class="contnido-txt-btn">
+  <h1>Perfil</h1>
+  <!-- <button mat-icon-button (click)="editarPerfil()">
+    <mat-icon>edit</mat-icon>
+  </button> -->
+</div>
 <div class="contenido-perfil">
   <h3>{{name}}</h3>
   <img [src]="img" [alt]="name">
   <h3>{{email}}</h3>
-  <button mat-button color="warn" (click)="auth.logout()">Cerrar sesión</button>
+  <button mat-raised-button color="warn" (click)="auth.logout()">Cerrar sesión</button>
 </div>
-<h1>Tarjetas</h1>
+<div class="contnido-txt-btn">
+  <h1>Tarjetas y Enlaces</h1>
+</div>
 <ajuste-tarjeta></ajuste-tarjeta>
-<!-- <h1>Ajustes</h1>
-<label id="radio-group-label">Ajuste de tarjetas</label>
-<mat-radio-group
+<!-- <div class="contnido-txt-btn">
+  <h1>Ajustes</h1>
+</div>
+<div class="contenido-toggle">
+  <mat-slide-toggle [(ngModel)]="ajusteSubnombre">Subnombre!</mat-slide-toggle>
+  <mat-slide-toggle [(ngModel)]="ajusteKanji">Kanji!</mat-slide-toggle>
+</div> -->
+<!-- <mat-radio-group
   aria-labelledby="radio-group-label"
   class="radio-group"
   (ngModelChange)="ajusteTarjeta($event)"

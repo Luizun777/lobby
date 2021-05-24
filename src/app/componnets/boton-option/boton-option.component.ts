@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
+import { ListadosService } from 'src/app/services/listados.service';
 
 @Component({
   selector: 'boton-option',
@@ -15,7 +16,7 @@ export class BotonOptionComponent implements OnInit {
   @Input() grupo: boolean;
   clickCopy: boolean = false;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public listadosSrv: ListadosService) { }
 
   ngOnInit(): void {
   }

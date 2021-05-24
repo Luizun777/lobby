@@ -5,5 +5,5 @@
     <boton [text]="'Copy url'" [icon]="'content_copy'" *ngIf="!grupo" (click)="copiarEnlace()"></boton>
     <boton [text]="'Quitar'" [icon]="'close'" *ngIf="!grupo" (click)="eliminar(false)"></boton>
     <boton [text]="'Editar'" [icon]="'edit'" (click)="edit()"></boton>
-    <boton [text]="'Eliminar'" [icon]="'delete'" (click)="eliminar(true)"></boton>
+    <boton [text]="'Eliminar'" [icon]="'delete'" *ngIf="listadosSrv.totalTarjetas > 1 && grupo" (click)="eliminar(true)"></boton>
 </mat-menu>
