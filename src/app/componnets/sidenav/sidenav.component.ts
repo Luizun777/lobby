@@ -27,9 +27,10 @@ export class SidenavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.ajusteSubnombre = false;
     this.favoriteSeason = localStorage.getItem('ajuste-tarjetas');
-    this.ajusteSubnombre = Boolean(localStorage.getItem('ajuste-subnombre'));
-    this.ajusteKanji = Boolean(localStorage.getItem('ajuste-kanji'));
+    this.ajusteSubnombre = localStorage.getItem('ajuste-subnombre') === 'true';
+    this.ajusteKanji = localStorage.getItem('ajuste-kanji') === 'true';
     this.auth.user$.subscribe((user: any) => {
       const {picture, email, nickname} = user;
       this.name = nickname;
@@ -77,6 +78,11 @@ export class SidenavComponent implements OnInit {
       //   // this.getListado();
       // }, 1000);
     });
+  }
+
+  cambiarToggle(variable: string, type: string): void {
+    localStorage.setItem(type, String(!this[variable]));
+    this.listadosService.ajusteAjustes.emit();
   }
 
 }

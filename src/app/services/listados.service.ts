@@ -17,6 +17,7 @@ export class ListadosService {
 
   @Output() change: EventEmitter<void> = new EventEmitter();
   @Output() ajusteTarjetas: EventEmitter<void> = new EventEmitter();
+  @Output() ajusteAjustes: EventEmitter<void> = new EventEmitter();
 
   constructor(private _snackBar: MatSnackBar, private http: HttpClient, public auth: AuthService) {
     this.auth.user$.subscribe((user: any) => this.client = user.sub.replace('auth0|',''));

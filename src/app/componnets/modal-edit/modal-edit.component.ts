@@ -5,6 +5,7 @@ import { ListadosService } from 'src/app/services/listados.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { KanjisService } from 'src/app/services/kanjis.service';
 
 @Component({
   selector: 'app-modal-edit',
@@ -19,6 +20,8 @@ export class ModalEditComponent implements OnInit {
   imgFile: File;
   btnLoading: boolean;
 
+  ajusteSubnombre: boolean;
+  ajusteKanji: boolean;
   grupo: boolean;
   info: any;
   orderForm: FormGroup;
@@ -28,6 +31,7 @@ export class ModalEditComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private KanjisSrv: KanjisService,
     public listadosSrv: ListadosService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ModalEditComponent>,
@@ -35,6 +39,7 @@ export class ModalEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // console.log(this.KanjisSrv.getKanjis());
     this.formInit();
     this.grupo = this.data.grupo;
     this.info = this.data.info;
@@ -237,6 +242,11 @@ export class ModalEditComponent implements OnInit {
     const splitName = filterValue.split(' ');
     const nuevoSubNombre = splitName.length === 1 ? splitName[0].slice(0,2).toLocaleLowerCase() : `${splitName[0].slice(0,1).toLocaleLowerCase()}${splitName[1].slice(0,1).toLocaleLowerCase()}`;
     this.orderForm.controls['subNombre'].setValue(nuevoSubNombre);
+  }
+
+  validarTitulos(): void {
+    this.ajusteSubnombre = localStorage.getItem('ajuste-subnombre') === 'true';
+    this.ajusteKanji = localStorage.getItem('ajuste-kanji') === 'true';
   }
 
 }

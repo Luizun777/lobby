@@ -14,13 +14,13 @@
   <h1>Tarjetas y Enlaces</h1>
 </div>
 <ajuste-tarjeta></ajuste-tarjeta>
-<!-- <div class="contnido-txt-btn">
+<div class="contnido-txt-btn">
   <h1>Ajustes</h1>
 </div>
 <div class="contenido-toggle">
-  <mat-slide-toggle [(ngModel)]="ajusteSubnombre">Subnombre!</mat-slide-toggle>
-  <mat-slide-toggle [(ngModel)]="ajusteKanji">Kanji!</mat-slide-toggle>
-</div> -->
+  <mat-slide-toggle (click)="cambiarToggle('ajusteSubnombre','ajuste-subnombre')" [checked]="ajusteSubnombre" [(ngModel)]="ajusteSubnombre">Subnombre</mat-slide-toggle>
+  <mat-slide-toggle (click)="cambiarToggle('ajusteKanji','ajuste-kanji')" [checked]="ajusteKanji" [(ngModel)]="ajusteKanji">Kanji</mat-slide-toggle>
+</div>
 <!-- <mat-radio-group
   aria-labelledby="radio-group-label"
   class="radio-group"

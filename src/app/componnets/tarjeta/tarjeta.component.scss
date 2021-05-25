@@ -11,7 +11,8 @@
   }
   .contenido-texto {
     display: grid;
-    padding-right: 1rem;
+    padding-right: 1.5rem;
+    align-content: center;
     .title {
       font-size: 24px;
       font-weight: 500;
@@ -25,7 +26,7 @@
 .contenido-btn {
   position: absolute;
   right: 0;
-  bottom: 0.5rem;
+  bottom: 0.2rem;
   text-align: end;
   color: snow;
 }

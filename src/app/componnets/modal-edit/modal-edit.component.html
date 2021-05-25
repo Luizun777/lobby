@@ -42,15 +42,19 @@
       <input matInput type="text" formControlName="nombre" maxlength="20" (focusout)="autoSubName($event)">
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Abreviación</mat-label>
-      <input matInput type="text" formControlName="subNombre" maxlength="4">
-    </mat-form-field>
+    <ng-container *ngIf="ajusteSubnombre">
+      <mat-form-field>
+        <mat-label>Abreviación</mat-label>
+        <input matInput type="text" formControlName="subNombre" maxlength="4">
+      </mat-form-field>
+    </ng-container>
 
-    <mat-form-field>
-      <mat-label>Kanji</mat-label>
-      <input matInput type="text" formControlName="kanji" maxlength="3">
-    </mat-form-field>
+    <ng-container *ngIf="ajusteKanji">
+      <mat-form-field>
+        <mat-label>Kanji</mat-label>
+        <input matInput type="text" formControlName="kanji" maxlength="3">
+      </mat-form-field>
+    </ng-container>
 
     <section class="checkbox" *ngIf="listadosSrv.admin">
       <mat-checkbox formControlName="privado">Privado</mat-checkbox>
@@ -77,6 +81,7 @@
             </label>
           </ng-container>
           <image-cropper
+              style="width: 23rem;height: 15rem;"
               [imageChangedEvent]="imageChangedEvent"
               [maintainAspectRatio]="true"
               [aspectRatio]="4 / 3"

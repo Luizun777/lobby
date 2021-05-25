@@ -2,12 +2,17 @@
   <img class="img" [src]="img" alt="img">
   <div class="contenido-texto">
     <div class="title">{{datos.title}}</div>
-    <div class="subtitle">{{datos.kanji}} /{{datos.subtitle}}/</div>
+    <ng-container *ngIf="ajusteKanji || ajusteSubnombre">
+      <div class="subtitle">
+        <span *ngIf="ajusteKanji">{{datos.kanji}} </span>
+        <span *ngIf="ajusteSubnombre">/{{datos.subtitle}}/</span>
+      </div>
+    </ng-container>
   </div>
   <div class="btn-edit">
     <boton-option [data]="datos" [type]="'Edit'" [grupo]="false"></boton-option>
   </div>
 </div>
 <div class="contenido-btn">
-  <button mat-button (click)="abirEnlace()">GO!</button>
+  <button mat-icon-button (click)="abirEnlace()">GO!</button>
 </div>
