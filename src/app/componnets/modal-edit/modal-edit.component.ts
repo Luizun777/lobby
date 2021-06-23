@@ -41,6 +41,7 @@ export class ModalEditComponent implements OnInit {
   ngOnInit(): void {
     // console.log(this.KanjisSrv.getKanjis());
     this.formInit();
+    this.validarTitulos();
     this.grupo = this.data.grupo;
     this.info = this.data.info;
     if (!this.grupo && this.data.type === 'Edit') {
@@ -83,9 +84,9 @@ export class ModalEditComponent implements OnInit {
     }
     if (this.imgFile) {
       const form = new FormData();
-      form.append('file', this.imgFile);
+      form.append('image', this.imgFile);
       this.listadosSrv.subirImg(form).subscribe((data: any) => {
-        this.orderForm.controls['img'].setValue(String(data.secure_url));
+        this.orderForm.controls['img'].setValue(String(data.link));
         this.editar();
       }, () => {
         this.editar();

@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '@auth0/auth0-angular';
@@ -107,6 +107,7 @@ export class ListadosService {
   }
 
   subirImg(file: any) {
-    return this.http.post('https://api.cloudinary.com/v1_1/dzbpfuieg/image/upload?upload_preset=me7wb9ao', file);
+    const headers = new HttpHeaders().set('access_token', 'Client-ID 97b6b340fb16284');
+    return this.http.post('https://api.imgur.com/3/image', file, {headers});
   }
 }

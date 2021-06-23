@@ -1,43 +1,51 @@
 @import '../../../styles.scss';
 
 .columna-grupo {
+  width: 100vh;
+  overflow-x: scroll;
+  overflow: auto;
+  margin-top: 3.5rem;
   background: #1c1e219c;
   backdrop-filter: blur(10px);
   // display: flex;
   // flex-flow: wrap;
   // justify-content: center;
   display: grid;
-  @include mobile-m {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-    // grid-template-columns: auto !important;
-  }
-  @include mobile-l {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-  }
-  @include tableta {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-  }
-  @include laptop-s {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-  }
-  @include laptop-m {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-  }
-  @include laptop-l {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-  }
-  @include desktop-k4 {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-  }
+  display: flex;
+  // flex-flow: wrap;
+  // justify-content: center;
+  // @include mobile-m {
+  //   display: flex;
+  //   flex-flow: wrap;
+  //   justify-content: center;
+  //   // grid-template-columns: auto !important;
+  // }
+  // @include mobile-l {
+  //   display: grid;
+  //   grid-template-columns: repeat(2, auto);
+  // }
+  // @include tableta {
+  //   display: grid;
+  //   grid-template-columns: repeat(3, auto);
+  // }
+  // @include laptop-s {
+  //   display: grid;
+  //   grid-template-columns: repeat(3, auto);
+  // }
+  // @include laptop-m {
+  //   display: grid;
+  //   grid-template-columns: repeat(3, auto);
+  // }
+  // @include laptop-l {
+  //   display: grid;
+  //   grid-template-columns: repeat(3, auto);
+  // }
+  // @include desktop-k4 {
+  //   display: flex;
+  //   flex-flow: wrap;
+  //   justify-content: center;
+  // }
+
   // margin-top: 2rem;
   // display: grid;
     // display: grid;
@@ -59,6 +67,7 @@
 }
 
 .columna-grupo-row {
+  margin-top: 3.5rem;
   display: flow-root;
   background: #1c1e219c;
   backdrop-filter: blur(10px);
