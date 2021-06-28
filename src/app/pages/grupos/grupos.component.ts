@@ -3,6 +3,7 @@ import { ListadosService } from 'src/app/services/listados.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'grupos',
@@ -11,6 +12,9 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class GruposComponent implements OnInit, OnDestroy {
 
+  minWidthList: any[] = [];
+  minWidthSub: Subscription;
+  contador: number = 0;
   grupos: any;
   listadoSub: Subscription;
   userSub: Subscription;
@@ -18,9 +22,14 @@ export class GruposComponent implements OnInit, OnDestroy {
   colum: boolean;
   columSub: Subscription;
 
-  constructor(private listadosSrv: ListadosService, public auth: AuthService) { }
+  constructor(
+    private listadosSrv: ListadosService,
+    public auth: AuthService,
+    public breakpointObserver: BreakpointObserver
+  ) { }
 
   ngOnInit(): void {
+    this.minWidth();
     this.cargando = true;
     this.changeColums();
     this.userSub = this.auth.user$.subscribe(() => this.getGrupos());
@@ -32,6 +41,44 @@ export class GruposComponent implements OnInit, OnDestroy {
     this.userSub.unsubscribe();
     this.listadoSub.unsubscribe();
     this.columSub.unsubscribe();
+    this.minWidthSub.unsubscribe();
+  }
+
+  escucharWidth() {
+    this.minWidthSub = this.breakpointObserver.observe(this.minWidthList).subscribe((state: any) => {
+      this.contador = 0;
+      for (const key in state.breakpoints) {
+        if (state.breakpoints.hasOwnProperty(key)) {
+          if (state.breakpoints[key]) {
+            this.contador++;
+          } else {
+            this.validContador();
+            break;
+          }
+        }
+      }
+    });
+  }
+
+  minWidth() {
+    for (let i = 1; i < 1000; i++) {
+      this.minWidthList.push(`(min-width: ${i}rem)`);
+    }
+    this.escucharWidth();
+  }
+
+  validContador(): void {
+    if (this.contador <= 60) {
+      this.contador -= 0.5;
+    } else if (this.contador > 60 && this.contador <= 100) {
+      this.contador -= 5;
+    } else if (this.contador > 100 && this.contador <= 110) {
+      this.contador -= 20;
+    } else if (this.contador > 110 && this.contador <= 120) {
+      this.contador -= 25;
+    } else {
+      this.contador -= 30;
+    }
   }
 
   getGrupos(): void {

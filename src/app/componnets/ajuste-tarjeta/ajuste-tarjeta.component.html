@@ -5,11 +5,14 @@
   </div>
 </div>
 <div class="contenido-btn">
-  <ng-container *ngIf="grupos.length < 4">
+  <!-- <ng-container *ngIf="grupos.length < 4">
     <button mat-raised-button color="basic" (click)="crearGrupo()">
       <mat-icon>add</mat-icon> Agregar tarjeta
     </button>
-  </ng-container>
+  </ng-container> -->
+  <button mat-raised-button color="basic" (click)="crearGrupo()">
+    <mat-icon>add</mat-icon> Agregar tarjeta
+  </button>
   <button mat-raised-button color="basic" (click)="agregarEnlace()">
     <mat-icon>add</mat-icon> Agregar enlace
   </button>

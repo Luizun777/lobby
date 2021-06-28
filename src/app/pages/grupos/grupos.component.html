@@ -5,12 +5,14 @@
 </ng-container>
 <ng-template #ok>
     <ng-container *ngIf="this.colum; else row">
-        <div class="columna-grupo">
-            <ng-container *ngFor="let grupo of grupos">
-                <div class="example-box">
-                    <app-columna [listado]="grupo"></app-columna>
-                </div>
-            </ng-container>
+        <div class=".container-fluid">
+            <div class="columna-grupo" [ngStyle]="{'width': contador+'rem'}">
+                <ng-container *ngFor="let grupo of grupos">
+                    <div class="example-box">
+                        <app-columna [listado]="grupo"></app-columna>
+                    </div>
+                </ng-container>
+            </div>
         </div>
     </ng-container>
     <ng-template #row>

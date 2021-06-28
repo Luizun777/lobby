@@ -1,69 +1,53 @@
 @import '../../../styles.scss';
 
 .columna-grupo {
-  width: 100vh;
+  // width: 23vh;
   overflow-x: scroll;
   overflow: auto;
   margin-top: 3.5rem;
   background: #1c1e219c;
   backdrop-filter: blur(10px);
-  // display: flex;
-  // flex-flow: wrap;
-  // justify-content: center;
-  display: grid;
   display: flex;
-  // flex-flow: wrap;
-  // justify-content: center;
+  // // flex-flow: wrap;
+  // // justify-content: center;
   // @include mobile-m {
-  //   display: flex;
-  //   flex-flow: wrap;
-  //   justify-content: center;
-  //   // grid-template-columns: auto !important;
+  //   width: 27vh !important;
   // }
   // @include mobile-l {
-  //   display: grid;
-  //   grid-template-columns: repeat(2, auto);
+  //   width: 31vh !important;
   // }
   // @include tableta {
-  //   display: grid;
-  //   grid-template-columns: repeat(3, auto);
+  //   width: 53vh !important;
   // }
   // @include laptop-s {
-  //   display: grid;
-  //   grid-template-columns: repeat(3, auto);
+  //   width: 61vh !important;
   // }
   // @include laptop-m {
-  //   display: grid;
-  //   grid-template-columns: repeat(3, auto);
+  //   width: 69vh !important;
   // }
   // @include laptop-l {
-  //   display: grid;
-  //   grid-template-columns: repeat(3, auto);
+  //   width: 69vh !important;
   // }
   // @include desktop-k4 {
-  //   display: flex;
-  //   flex-flow: wrap;
-  //   justify-content: center;
+  //   width: 81vh !important;
   // }
 
   // margin-top: 2rem;
-  // display: grid;
-    // display: grid;
-    // grid-template-columns: auto;
-    // // width: 1000px;
-    // max-width: 100%;
-    // border: solid 1px #393a3b;
-    // min-height: 60px;
-    // flex-direction: row;
-    // // background: white;
-    // border-radius: 4px;
-    // overflow: hidden;
-    // @include tableta {
-    //   grid-template-columns: repeat(2, auto);
-    // }
-    // @include desktop {
-    //   grid-template-columns: repeat(3, auto);
-    // }
+  // display: flex;
+  // margin: 0 auto;
+  // grid-template-columns: auto;
+  // width: 1000px;
+  // // max-width: 150vh;
+  // border: solid 1px #393a3b;
+  // // min-height: 60px;
+  // flex-direction: row;
+  // // background: white;
+  // border-radius: 4px;
+  // overflow: hidden;
+  // display: flex;
+  // width: auto;
+  // overflow-x: scroll;
+  // overflow: auto;
 }
 
 .columna-grupo-row {
