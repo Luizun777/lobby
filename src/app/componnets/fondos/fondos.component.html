@@ -1,5 +1,5 @@
 <div class="contenido-fondos">
     <ng-container *ngFor="let fondo of fondos">
-        <img [src]="path+fondo" [alt]="fondo">
+        <img [src]="path+fondo" [alt]="fondo" (click)="selectFondo(fondo)">
     </ng-container>
 </div>

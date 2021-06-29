@@ -58,3 +58,11 @@ body {
   -o-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite;
 }
+
+.mat-drawer-inner-container {
+  overflow-y: scroll;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+}

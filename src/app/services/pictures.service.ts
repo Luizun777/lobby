@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -6,6 +6,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
   providedIn: 'root'
 })
 export class PicturesService {
+
+  @Output() changeFondo: EventEmitter<void> = new EventEmitter();
 
   constructor(
     private firestore: AngularFirestore,
