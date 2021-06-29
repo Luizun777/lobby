@@ -13,6 +13,7 @@ export class PagesComponent implements OnInit {
   colum: boolean;
   columSub: Subscription;
   isAuth: boolean;
+  // https://res.cloudinary.com/dzbpfuieg/image/upload/v1616549192/iswn9m5wv2gw1znq6lmd.jpg
 
   constructor(private listadosSrv: ListadosService, public auth: AuthService) { }
 

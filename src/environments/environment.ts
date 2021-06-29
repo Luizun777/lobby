@@ -6,7 +6,16 @@ export const environment = {
   production: false,
   // urlApi: 'http://localhost:5000/api/lobby/',
   // urlApi: 'https://still-eyrie-33337.herokuapp.com/api/lobby/'
-  urlApi: 'https://app-lobby-luizun.herokuapp.com/api/lobby/'
+  urlApi: 'https://app-lobby-luizun.herokuapp.com/api/lobby/',
+  firebaseConfig: {
+    apiKey: "AIzaSyB1sY_ly06LDEwMEb2pg31Bjd9UroNbKnY",
+    authDomain: "lovy-ef15f.firebaseapp.com",
+    projectId: "lovy-ef15f",
+    storageBucket: "lovy-ef15f.appspot.com",
+    messagingSenderId: "590150416104",
+    appId: "1:590150416104:web:51d661e06b8d237de3fb5d",
+    measurementId: "G-QJ2Y1V55VK"
+  }
 };
 
 /*

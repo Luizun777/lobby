@@ -6,6 +6,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { KanjisService } from 'src/app/services/kanjis.service';
+import { PicturesService } from 'src/app/services/pictures.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-modal-edit',
@@ -33,6 +35,8 @@ export class ModalEditComponent implements OnInit {
     public dialog: MatDialog,
     private KanjisSrv: KanjisService,
     public listadosSrv: ListadosService,
+    public picturesSrv: PicturesService,
+    private storage: AngularFireStorage,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ModalEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -84,16 +88,31 @@ export class ModalEditComponent implements OnInit {
     }
     if (this.imgFile) {
       const form = new FormData();
-      form.append('image', this.imgFile);
-      this.listadosSrv.subirImg(form).subscribe((data: any) => {
-        this.orderForm.controls['img'].setValue(String(data.link));
-        this.editar();
-      }, () => {
-        this.editar();
-        this.listadosSrv.alertaError(false, 'Error al guardar imagen');
+      form.append('archivo', this.imgFile);
+      console.log(this.imgFile);
+      
+      const filePath = `img/${new Date().getTime()}_image.png`;
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, this.imgFile);
+
+      fileRef.put(this.imgFile).then((snapshot) => {
+        console.log(snapshot);
+        console.log('Uploaded a blob or file!');
       });
+      
+      // this.listadosSrv.subirImg(form).subscribe((data: any) => {
+      //   this.orderForm.controls['img'].setValue(String(data.link));
+      //   this.editar();
+      // }, () => {
+      //   this.editar();
+      //   this.listadosSrv.alertaError(false, 'Error al guardar imagen');
+      // });
     }
     this.editar();
+  }
+
+  private generateFileName(): string {
+    return `img/${new Date().getTime()}_image.png`;
   }
 
   editar() {

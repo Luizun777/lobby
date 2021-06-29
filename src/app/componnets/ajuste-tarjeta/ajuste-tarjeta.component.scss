@@ -57,3 +57,14 @@
   grid-gap: 0.5rem;
   margin-bottom: 1rem;
 }
+
+h1 {
+  font-weight: bold;
+  margin-bottom: 0px;
+  color: snow;
+}
+
+::ng-deep .mat-expansion-panel {
+  background: #1c1e219c;
+  backdrop-filter: blur(10px);
+}

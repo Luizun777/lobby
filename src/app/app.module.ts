@@ -13,6 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompoentsModule } from './componnets/componnets.module';
 import { MaterialModule } from './material-components/material-components.module';
 import { AuthModule } from '@auth0/auth0-angular';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 registerLocaleData(es);
 
@@ -34,6 +37,8 @@ registerLocaleData(es);
       cacheLocation: 'localstorage',
       useRefreshTokens: true
     }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]

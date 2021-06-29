@@ -24,6 +24,11 @@ import { AjusteTarjetaComponent } from './ajuste-tarjeta/ajuste-tarjeta.componen
 import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 import { EditPerfilComponent } from './edit-perfil/edit-perfil.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FondosComponent } from './fondos/fondos.component';
 
 @NgModule({
   imports: [
@@ -41,7 +46,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatCheckboxModule,
     MatFormFieldModule,
     MatRadioModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatExpansionModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   declarations: [
     TarjetaComponent,
@@ -52,7 +60,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     SidenavComponent,
     AjusteTarjetaComponent,
     ModalConfirmComponent,
-    EditPerfilComponent
+    EditPerfilComponent,
+    FondosComponent
   ],
   exports: [
     TarjetaComponent,
