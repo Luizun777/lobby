@@ -66,3 +66,24 @@ body {
     display: none !important;
   }
 }
+
+.mat-autocomplete-panel {
+  color: snow;
+  background: #878c91;
+}
+.mat-option {
+  color: snow;
+}
+
+.style-scroll::-webkit-scrollbar
+{
+	width: 9px;
+	background-color: #ffffff00;
+}
+
+.style-scroll::-webkit-scrollbar-thumb
+{
+	border-radius: 0px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: rgb(59, 59, 59);
+}
