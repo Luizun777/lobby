@@ -25,6 +25,7 @@ import { ModalConfirmComponent } from './modal-confirm/modal-confirm.component';
 import { EditPerfilComponent } from './edit-perfil/edit-perfil.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -48,6 +49,7 @@ import { FondosComponent } from './fondos/fondos.component';
     MatRadioModule,
     MatSlideToggleModule,
     MatExpansionModule,
+    MatAutocompleteModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule
   ],

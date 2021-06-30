@@ -32,6 +32,8 @@ export class ModalEditComponent implements OnInit {
   todo: any = [];
   done: any = [];
 
+  kanjisList: any = [];
+
   constructor(
     public dialog: MatDialog,
     private KanjisSrv: KanjisService,
@@ -44,7 +46,7 @@ export class ModalEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log(this.KanjisSrv.getKanjis());
+    this.crearArreglo();
     this.formInit();
     this.validarTitulos();
     this.grupo = this.data.grupo;
@@ -255,6 +257,26 @@ export class ModalEditComponent implements OnInit {
   validarTitulos(): void {
     this.ajusteSubnombre = localStorage.getItem('ajuste-subnombre') === 'true';
     this.ajusteKanji = localStorage.getItem('ajuste-kanji') === 'true';
+  }
+
+  displayFn(user: any): string {
+    return user && user.name ? user.name : '';
+  }
+
+  private _filter(name: string): any {
+    const filterValue = name.toLowerCase();
+
+    // return this.KanjisSrv.getKanjis.filter(option => option.name.toLowerCase().includes(filterValue));
+  }
+
+  crearArreglo() {
+    this.kanjisList = [];
+    const kanji = this.KanjisSrv.getKanjis();
+    Object.keys(kanji).forEach((key: string) => {
+      const kan = kanji[key];
+      kan.value = key;
+      this.kanjisList.push(kan);
+    });
   }
 
 }

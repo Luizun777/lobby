@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { kanjis } from '../../assets/kanji';
+import { kanjis } from 'dist/lobby-app/assets/kanji';
 
 @Injectable({
   providedIn: 'root'

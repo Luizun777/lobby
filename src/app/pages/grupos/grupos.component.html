@@ -6,7 +6,7 @@
 <ng-template #ok>
     <ng-container *ngIf="this.colum; else row">
         <div class=".container-fluid">
-            <div class="columna-grupo" [ngStyle]="{'width': contador+'rem'}" data-simplebar>
+            <div class="columna-grupo style-scroll" [ngStyle]="{'width': contador+'rem'}" data-simplebar>
                 <ng-container *ngFor="let grupo of grupos">
                     <div class="example-box">
                         <app-columna [listado]="grupo"></app-columna>
